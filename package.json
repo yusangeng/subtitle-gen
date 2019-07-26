@@ -16,11 +16,14 @@
     "baidu-aip-sdk": "^2.3.9",
     "chalk-stencil": "^1.0.0",
     "commander": "^2.20.0",
+    "deepmerge": "^3.3.0",
     "ffmpeg": "0.0.4",
     "mkdirp": "^0.5.1",
+    "node-vad": "^1.1.2",
     "promisfy": "^1.2.0",
     "rmrf": "^2.0.0",
     "shortid": "^2.2.14",
-    "subtitle": "^2.0.3"
+    "subtitle": "^2.0.3",
+    "user-home": "^2.0.0"
   }
 }

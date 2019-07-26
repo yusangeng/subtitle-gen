@@ -14,7 +14,7 @@ async function run (fn) {
   try {
     await fn()
   } catch (err) {
-    error(err.message || err.msg)
+    error(err.stack || err.msg)
     process.exit(1)
   }
 }

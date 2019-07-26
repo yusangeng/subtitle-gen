@@ -33,4 +33,6 @@ module.exports = async function separateAudioTrack (filename) {
   })()
 
   info(`音轨文件: ${file}.\n`)
+
+  return audioTrackFilename
 }

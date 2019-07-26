@@ -1,1 +1,4 @@
 node_modules
+context_*
+.DS_Store
+package_lock.json
