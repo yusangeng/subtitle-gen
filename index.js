@@ -22,7 +22,7 @@ async function run (fn) {
 }
 
 program
-  .version('1.0.0')
+  .version('0.1.1')
   .option('-i --input <path>', 'input video file')
   .option('-o --output <path>', 'output file')
   .option('-s --srt <path>', 'input srt file')
