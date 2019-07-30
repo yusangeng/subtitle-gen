@@ -5,7 +5,7 @@ A command-line tool to generate subtitle from video file.
 ## Install
 
 ``` shell
-npm i subtitle-gen
+npm i subtitle-gen -g
 ```
 
 ## Usage
