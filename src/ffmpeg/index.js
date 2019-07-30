@@ -1,7 +1,6 @@
-const composeSubtitle = require('./composeSubtitle')
+const composeVideoWithSubtitle = require('./composeVideoWithSubtitle')
 const separateAudioTrack = require('./separateAudioTrack')
-const splitTimeline = require('./splitTimeline')
 
 module.exports = {
-  composeSubtitle, separateAudioTrack, splitTimeline
+  composeVideoWithSubtitle, separateAudioTrack
 }

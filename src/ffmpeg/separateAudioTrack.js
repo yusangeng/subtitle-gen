@@ -1,6 +1,5 @@
 const path = require('path')
 const { promisfy } = require('promisfy')
-const shortid = require('shortid')
 const createVideo = require('../utils/createVideo')
 const { info } = require('../utils/log')
 
@@ -20,7 +19,7 @@ module.exports = async function separateAudioTrack (filename) {
   info('正在生成音轨文件...\n')
 
   const { dir } = process.context
-  const audioTrackFilename = path.resolve(dir, `${shortid()}.pcm`)
+  const audioTrackFilename = path.resolve(dir, `audioTrack.pcm`)
 
   const file = await promisfy((callback) => {
     video.addCommand('-f', 's16le')

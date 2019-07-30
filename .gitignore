@@ -1,4 +1,5 @@
 node_modules
-context_*
+.context_*
 .DS_Store
-package_lock.json
+out.mp4
+package-lock.json

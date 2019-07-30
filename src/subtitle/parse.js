@@ -1,5 +1,5 @@
-import * as subtitle from 'subtitle'
+const subtitle = require('subtitle')
 
-export default function parse (text) {
+module.exports = function parse (text) {
   return []
 }

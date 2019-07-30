@@ -1,6 +1,6 @@
 {
   "name": "subtitle-gen",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A command-line tool to generate subtitle from video file.",
   "main": "index.js",
   "bin": {
@@ -23,6 +23,7 @@
     "promisfy": "^1.2.0",
     "rmrf": "^2.0.0",
     "shortid": "^2.2.14",
+    "sleep-promise": "^8.0.1",
     "subtitle": "^2.0.3",
     "user-home": "^2.0.0"
   }

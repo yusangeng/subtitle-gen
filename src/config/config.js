@@ -5,7 +5,10 @@ const deepMerge = require('deepmerge')
 const { error } = require('../utils/log')
 
 const defaultConfig = {
-  debounceTime: 1000
+  debounceTime: 500,
+  aipAppId: '',
+  aipAPIKey: '',
+  aipSecretKey: ''
 }
 
 let config = defaultConfig
@@ -23,8 +26,15 @@ try {
   const jsonContent = JSON.parse(jsonText)
 
   config = deepMerge(defaultConfig, jsonContent)
+
+  const { aipAppId, aipAPIKey, aipSecretKey } = config
+
+  if (!aipAppId || !aipAPIKey || !aipSecretKey) {
+    throw new Error('缺少百度AIP应用相关配置.')
+  }
 } catch (err) {
   error(err.message)
+  process.exit(1)
 }
 
 module.exports = config

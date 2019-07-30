@@ -5,17 +5,19 @@ const program = require('commander')
 const mkdir = require('mkdirp')
 const shortid = require('shortid')
 const rmrf = require('rmrf')
-const srt = require('./src/app/srt')
+const gensrt = require('./src/app/gensrt')
 const compose = require('./src/app/compose')
-const video = require('./src/app/video')
+const genvideo = require('./src/app/genvideo')
 const { error } = require('./src/utils/log')
+
+let errno = 0
 
 async function run (fn) {
   try {
     await fn()
   } catch (err) {
-    error(err.stack || err.msg)
-    process.exit(1)
+    error(err.stack || err.msg || err)
+    throw err
   }
 }
 
@@ -24,46 +26,65 @@ program
   .option('-i --input <path>', 'input video file')
   .option('-o --output <path>', 'output file')
   .option('-s --srt <path>', 'input srt file')
+  .option('-nr --noremovetemp', 'skip removing temporary files')
 
-program.command('srt')
+program.command('gensrt')
   .description('Generate srt file.')
   .action(async () => {
-    const contextDir = path.resolve(process.cwd(), `./context_${shortid()}`)
+    const contextDir = path.resolve(process.cwd(), `./.context_${shortid()}`)
     mkdir.sync(contextDir)
     process.context = { dir: contextDir }
 
     try {
-      await run(async () => srt(program.input, program.output))
+      await run(async () => gensrt(program.input, program.output))
+    } catch (err) {
+      errno = 1
     } finally {
-      // rmrf.sync(contextDir)
+      if (!program.noremovetemp) {
+        rmrf(contextDir)
+      }
+
+      process.exit(errno)
     }
   })
 
 program.command('compose')
   .description('Compose input video file with input srt file.')
   .action(async () => {
-    const contextDir = path.resolve(process.cwd(), `./context_${shortid()}`)
+    const contextDir = path.resolve(process.cwd(), `./.context_${shortid()}`)
     mkdir.sync(contextDir)
     process.context = { dir: contextDir }
 
     try {
       await run(async () => compose(program.input, program.srt, program.output))
+    } catch (err) {
+      errno = 1
     } finally {
-      rmrf.sync(contextDir)
+      if (!program.noremovetemp) {
+        rmrf(contextDir)
+      }
+
+      process.exit(errno)
     }
   })
 
-program.command('video')
+program.command('genvideo')
   .description('Generate video file with inline subtitle.')
   .action(async () => {
-    const contextDir = path.resolve(process.cwd(), `./context_${shortid()}`)
+    const contextDir = path.resolve(process.cwd(), `./.context_${shortid()}`)
     mkdir.sync(contextDir)
     process.context = { dir: contextDir }
 
     try {
-      await run(async () => video(program.input, program.output))
+      await run(async () => genvideo(program.input, program.output))
+    } catch (err) {
+      errno = 1
     } finally {
-      rmrf.sync(contextDir)
+      if (!program.noremovetemp) {
+        rmrf(contextDir)
+      }
+
+      process.exit(errno)
     }
   })
 

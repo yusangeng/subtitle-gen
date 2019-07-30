@@ -1,5 +1,5 @@
-import recognize from './recognize'
+const recognize = require('./recognize')
 
-export {
+module.exports = {
   recognize
 }
