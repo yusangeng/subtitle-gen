@@ -1,6 +1,6 @@
 {
   "name": "subtitle-gen",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "A command-line tool to generate subtitle from video file.",
   "main": "index.js",
   "bin": {
