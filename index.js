@@ -56,7 +56,7 @@ program.command('compose')
     process.context = { dir: contextDir }
 
     try {
-      await run(async () => compose(program.input, program.srt, program.output))
+      await run(async () => compose(program.input, program.output, program.srt))
     } catch (err) {
       errno = 1
     } finally {
